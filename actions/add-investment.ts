@@ -5,13 +5,21 @@ import { auth, currentUser } from '@clerk/nextjs';
 import { revalidatePath } from 'next/cache';
 
 type Props = {
-    age: string;
-    gender: string;
+    amount : string;
+    type : string;
+    invName: string;
+    riskFactor: string;
+    returnFactor: string;
+    familyMemberName: string;
 }
 
-export const setUserInfo = async ({
-    age,
-    gender
+export const addInvestment = async ({
+    amount,
+    type,
+    invName,
+    riskFactor,
+    returnFactor,
+    familyMemberName
 }: Props) => {
 
     console.log("set user called");
@@ -23,15 +31,15 @@ export const setUserInfo = async ({
 
     console.log("user" + user);
 
-    const newUser = await db.user.create({
+    const newUser = await db.investment.create({
         data: {
             userId,
-            userName: user.firstName + " " + user.lastName,
-            imageUrl: user.imageUrl,
-            age: age,
-            gender: gender,
-            totalInv: "0",
-            totalSav: "0"
+            amount,
+            type,
+            invName,
+            riskFactor,
+            returnFactor,
+            familyMemberName
         }
     });
 

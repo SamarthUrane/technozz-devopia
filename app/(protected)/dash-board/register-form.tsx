@@ -16,7 +16,7 @@ export const RegisterForm = () => {
         if(pending) return;
         
 
-        const formData = new FormData(e);
+        const formData = new FormData(e.target);
         const age = formData.get("age") as string;
         const gender = formData.get("gender") as string;
 
@@ -48,7 +48,7 @@ export const RegisterForm = () => {
                             />
                             <Separator />
                             <FormSubmit
-                                // isProcessing={pending}
+                                isProcessing={pending}
                                 className="w-full"
                             >
                                 Add

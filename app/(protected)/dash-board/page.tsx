@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { use } from 'react';
 import DashBox from '../../../components/dash-box';
 import Members from '../../../components/member-box';
-import { auth } from '@clerk/nextjs';
 import { getUserInfo } from '@/actions/get-user-info';
 import { RegisterForm } from './register-form';
+import { getInvestments } from '@/db/queries';
 
 
 interface Member {
@@ -16,14 +16,17 @@ interface Member {
 const Page: React.FC = async () => {
     
     const getUserData = getUserInfo();
+    const getInvestmentsData = getInvestments();
 
     const [
-        userData
+        userData,
+        investmentsData
     ] = await Promise.all([
-        getUserData
+        getUserData,
+        getInvestmentsData
     ]);
 
-    console.log(userData?.user?.userId);
+    console.log(investmentsData);
 
     const members: Member[] = [{
         "name": "Samarth",
@@ -52,8 +55,8 @@ const Page: React.FC = async () => {
         <div className='h-full'>
             {userData?.user?.userId ? (
                 <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 p-4 md:p-8">
-                    <DashBox title="Investment" totalMoney={100000} />
-                    <DashBox title="Savings" totalMoney={50000} />
+                    <DashBox title="Investment" totalMoney={userData.user.totalInv === "0" ? 0 : parseInt(userData.user.totalInv)} />
+                    <DashBox title="Savings" totalMoney={userData.user.totalSav === "0" ? 0 : parseInt(userData.user.totalSav)} />
                     <Members membersdata={members} />
                 </div>
             ) : (

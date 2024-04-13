@@ -7,9 +7,7 @@ import { FormInput } from "../form/form-input";
 import { MailWarning } from "lucide-react";
 import { Separator } from "../ui/separator";
 import { FormSubmit } from "../form/form-submit";
-// import { toast } from "sonner";
-// import { setUserAlertEmail } from "@/actions/alert-email";
-// import { useEmailVerificationModal } from "@/store/use-verification-modal";
+import { toast } from "sonner";
 
 export const AddInvestmentModal = () => {
     const { isOpen, close } = useSetInvestmentModal();
@@ -25,14 +23,11 @@ export const AddInvestmentModal = () => {
         if (pending) return;
 
         const formData = new FormData(event.target);
+        const amount = formData.get("amount") as string;
 
-        startTransition(() => {
+        // startTransition(() => {
 
-            const email = formData.get("email") as string;
-            const location = formData.get("location") as string;
-
-
-        });
+        // });
 
     };
 
@@ -52,14 +47,29 @@ export const AddInvestmentModal = () => {
                     <form onSubmit={handleSubmit} className="mx-0">
                         <div className="space-y-4">
                             <FormInput
-                                label="Location"
-                                id="location"
+                                label="Amount"
+                                id="amount"
+                                type="number"
+                            />
+                            <FormInput
+                                label="Type"
+                                id="type"
                                 type="text"
                             />
                             <FormInput
-                                label="Email"
-                                id="email"
-                                type="email"
+                                label="Invest name"
+                                id="invName"
+                                type="text"
+                            />
+                            <FormInput
+                                label="Risk factor"
+                                id="riskFactor"
+                                type="text"
+                            />
+                            <FormInput
+                                label="Family member name"
+                                id="familyMemeberName"
+                                type="text"
                             />
                             <Separator />
                             <FormSubmit
