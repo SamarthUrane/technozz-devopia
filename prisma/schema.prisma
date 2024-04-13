@@ -41,3 +41,10 @@ model Family{
   name String @unique
   totalInv String
 }
+
+model History{
+  id String @default(uuid()) @id
+  userId String
+  name String @unique
+  totalInv String
+}
