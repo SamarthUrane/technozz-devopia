@@ -51,11 +51,7 @@ export const AddSavingsModal = () => {
                                 id="amount"
                                 type="number"
                             />
-                            <FormInput
-                                label="Name"
-                                id="name"
-                                type="text"
-                            />
+                             
                             <Separator />
                             <FormSubmit
                                 isProcessing={pending}
