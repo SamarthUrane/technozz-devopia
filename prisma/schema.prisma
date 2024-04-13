@@ -38,6 +38,6 @@ model Investment{
 model Family{
   id String @default(uuid()) @id
   userId String
-  name String
-  invAmount String
+  name String @unique
+  totalInv String
 }
