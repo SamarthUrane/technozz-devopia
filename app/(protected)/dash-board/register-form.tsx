@@ -19,11 +19,13 @@ export const RegisterForm = () => {
         const formData = new FormData(e.target);
         const age = formData.get("age") as string;
         const gender = formData.get("gender") as string;
+  
 
         startTransaction(() => {
             setUserInfo({age, gender})
             .then(() => {
                 toast.success("Registered successfully!");
+                
             })
             .catch(() => toast.error("Something went wront"));
         })
