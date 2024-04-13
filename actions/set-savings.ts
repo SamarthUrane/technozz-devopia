@@ -6,6 +6,7 @@ import { revalidatePath } from 'next/cache';
 
 type Props = {
     amount : string; 
+    type: string;
 }
 
 export const addSavings = async ({
@@ -26,8 +27,12 @@ export const addSavings = async ({
             totalSav:true 
         }
     });     
-    const finalAmount=parseInt(prevSavings.totalSav)+parseInt(amount);
 
+    let finalAmount = 0;
+
+    if(prevSavings){
+        finalAmount = parseInt(prevSavings.totalSav)+parseInt(amount);
+    }
     
     const newUser = await db.user.update({
         where:{

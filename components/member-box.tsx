@@ -1,4 +1,9 @@
+"use client";
+
 import React from 'react';
+import { Button } from './ui/button';
+import { Plus } from 'lucide-react';
+import { useSetMemberModal } from '@/store/use-member-modal';
 
 interface Props {
   membersdata: Member[];
@@ -12,6 +17,7 @@ interface Member {
 }
 
 const Members: React.FC<Props> = ({ membersdata }) => {
+  const {open} = useSetMemberModal();
   return (
     <div className="w-full max-w-md p-4 bg-white border border-gray-400 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700 h-72">
       <div className="flex items-center justify-between mb-4">
@@ -37,9 +43,9 @@ const Members: React.FC<Props> = ({ membersdata }) => {
                   </p>
                 </div>
                 <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                <a href="#" className="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">
-          View
-        </a>
+                <Button onClick={open}>
+                  <Plus />
+                </Button>
                 </div>
               </div>
             </li>

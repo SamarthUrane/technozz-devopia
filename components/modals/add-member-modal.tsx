@@ -1,17 +1,18 @@
 "use client";
 
-import { useSetSavingsModal } from "@/store/use-savings-modal";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "../ui/dialog";
 import { useEffect, useState, useTransition } from "react";
 import { FormInput } from "../form/form-input";
-import { PiggyBank } from "lucide-react";
+import { UserRoundPlus } from "lucide-react";
 import { Separator } from "../ui/separator";
 import { FormSubmit } from "../form/form-submit";
 import { toast } from "sonner";
 import { addSavings } from "@/actions/set-savings";
+import { useSetMemberModal } from "@/store/use-member-modal";
+import { addMember } from "@/actions/add-members";
 
-export const AddSavingsModal = () => {
-    const { isOpen, close } = useSetSavingsModal();
+export const AddMemberModal = () => {
+    const { isOpen, close } = useSetMemberModal();
     const [isClient, setIsClient] = useState(false);
 
     useEffect(() => setIsClient(true), []);
@@ -26,9 +27,10 @@ export const AddSavingsModal = () => {
         const formData = new FormData(event.target);
 
         startTransition(() => { 
-            const amount = formData.get("amount") as string; 
-            addSavings({amount, type: "cash"}).then(()=>{
-                toast.success("Savings added")
+            const name = formData.get("name") as string; 
+
+            addMember({name: name, totalInv: "0"}).then(()=>{
+                toast.success("Member added")
             }).catch(()=>{
                 toast.error("something went wrong")
             })
@@ -43,20 +45,19 @@ export const AddSavingsModal = () => {
             <DialogContent className="max-w-md">
                 <DialogHeader>
                     <DialogTitle className="text-2xl flex gap-2 items-center justify-center">
-                        <PiggyBank className="h-6 w-6" /> Add Savings
+                        <UserRoundPlus className="h-6 w-6" /> Add Members
                     </DialogTitle>
                     <DialogDescription className="py-1 text-center">
-                        Add to your savings
+                        Add members to your group
                     </DialogDescription>
                     <Separator />
                     <form onSubmit={handleSubmit} className="mx-0">
                         <div className="space-y-4">
                             <FormInput
-                                label="Amount"
-                                id="amount"
-                                type="number"
+                                label="Name"
+                                id="name"
+                                type="text"
                             />
-                             
                             <Separator />
                             <FormSubmit
                                 isProcessing={pending}

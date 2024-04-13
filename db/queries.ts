@@ -17,4 +17,4 @@ export const getInvestments = cache(async () => {
     });
 
     return data;
-})
+});
