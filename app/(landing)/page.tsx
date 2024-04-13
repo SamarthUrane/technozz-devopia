@@ -16,7 +16,6 @@ export default function Home() {
           Take Control of Your Finances.
         </h1>
       </div>
-      <UserButton afterSignOutUrl="/"/>
     </div>
   );
 }
