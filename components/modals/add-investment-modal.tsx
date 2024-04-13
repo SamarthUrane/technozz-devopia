@@ -4,10 +4,11 @@ import { useSetInvestmentModal } from "@/store/use-investment-modal";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "../ui/dialog";
 import { useEffect, useState, useTransition } from "react";
 import { FormInput } from "../form/form-input";
-import { MailWarning } from "lucide-react";
+import { HandCoins } from "lucide-react";
 import { Separator } from "../ui/separator";
 import { FormSubmit } from "../form/form-submit";
 import { toast } from "sonner";
+import { addInvestment } from "@/actions/add-investment";
 
 export const AddInvestmentModal = () => {
     const { isOpen, close } = useSetInvestmentModal();
@@ -24,10 +25,17 @@ export const AddInvestmentModal = () => {
 
         const formData = new FormData(event.target);
         const amount = formData.get("amount") as string;
+        const type = formData.get("type") as string;
+        const invName = formData.get("invName") as string;
+        const riskFactor = formData.get("riskFactor") as string;
+        const returnFactor = formData.get("returnFactor") as string;
+        const familyMemberName = formData.get("familyMemberName") as string;
 
-        // startTransition(() => {
-
-        // });
+        startTransition(() => {
+            addInvestment({amount, type, invName, riskFactor, returnFactor, familyMemberName})
+            .then(() => toast.success("Investment Added"))
+            .catch(() => toast.error("Something went wrong"));
+        });
 
     };
 
@@ -38,10 +46,10 @@ export const AddInvestmentModal = () => {
             <DialogContent className="max-w-md">
                 <DialogHeader>
                     <DialogTitle className="text-2xl flex gap-2 items-center justify-center">
-                        <MailWarning className="h-6 w-6" /> Email Alerts
+                        <HandCoins className="h-6 w-6" /> Add Investment
                     </DialogTitle>
                     <DialogDescription className="py-1 text-center">
-                        Set Your Email and Preferred Location for Timely Notifications
+                        Add about your new Investment
                     </DialogDescription>
                     <Separator />
                     <form onSubmit={handleSubmit} className="mx-0">
@@ -62,13 +70,18 @@ export const AddInvestmentModal = () => {
                                 type="text"
                             />
                             <FormInput
-                                label="Risk factor"
+                                label="Return factor"
                                 id="riskFactor"
                                 type="text"
                             />
                             <FormInput
+                                label="Risk factor"
+                                id="returnFactor"
+                                type="text"
+                            />
+                            <FormInput
                                 label="Family member name"
-                                id="familyMemeberName"
+                                id="familyMemberName"
                                 type="text"
                             />
                             <Separator />
@@ -76,7 +89,7 @@ export const AddInvestmentModal = () => {
                                 isProcessing={pending}
                                 className="w-full"
                             >
-                                Set
+                                Add
                             </FormSubmit>
                         </div>
                     </form>
