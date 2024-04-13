@@ -13,10 +13,31 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model User{
+  userId String @unique
+  userName String
+  imageUrl String?
+  age String
+  gender String
+  totalInv String
+  totalSav String
+}
 
 model Investment{
   id String @default(uuid()) @id
   userId String
   amount String
   type String
+  invName String
+  riskFactor String
+  returnFactor String
+  createdAt DateTime @default(now())
+  familyMemberName String
+}
+
+model Family{
+  id String @default(uuid()) @id
+  userId String
+  name String
+  invAmount String
 }
