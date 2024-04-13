@@ -41,8 +41,6 @@ export const addInvestment = async ({
         }
     });
     
-    
-
     const prevInv = await db.user.findUnique({
         where: {
             userId
@@ -65,6 +63,7 @@ export const addInvestment = async ({
             totalInv: totalInvAfterUpdate.toString(),
         }
     })  
+    
     const newamount=0 - parseInt(amount)
     const newvalue=newamount.toString() 
     addSavings({amount:newvalue, type: type, buy: true})

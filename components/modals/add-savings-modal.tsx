@@ -34,7 +34,6 @@ export const AddSavingsModal = () => {
                 toast.error("something went wrong")
             })
         });
-
     };
 
     if (!isClient) return null;
