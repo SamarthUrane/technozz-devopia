@@ -28,7 +28,7 @@ const Table: React.FC<TableProps> = ({ investmentsData }) => {
     }
     return (
         <div> 
-            <div className="relative overflow-x-auto shadow-md sm:rounded-lg m-2">
+            <div className="relative overflow-x-auto shadow-md sm:rounded-lg m-2 mx-64">
                 <h1 className='text-xl mb-3 font-bold ml-5'>Your Family&apos;s Total Investment</h1>
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">

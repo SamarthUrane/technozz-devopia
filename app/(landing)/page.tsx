@@ -1,9 +1,9 @@
 import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
-import {Cabin} from "next/font/google"
+import {Cabin, Raleway} from "next/font/google"
 
 import Image from "next/image";
-const font = Cabin({subsets:["latin"]})
+const font = Raleway({subsets:["latin"]})
 export default function Home() {
   const {userId} = auth();
   if(userId){
@@ -11,8 +11,8 @@ export default function Home() {
   }
   return (
      
-<div className="flex h-full w-full bg-blue-300 items-center justify-center gap-20 p-20">
-<div className="flex-col w-50 h-25 p-20 shadow-xl bg-amber-200 border-black-200 rounded-xl  dark:border-gray-700 gap-5">
+<div className="flex h-full w-full items-center justify-center gap-20 p-20">
+<div className="flex-col w-50 h-25 p-20 shadow-2xl bg-emerald-500/50 border-black-200 rounded-xl  dark:border-gray-700 gap-5">
 <h5 className="mb-3 text-base text-center font-semibold text-white md:text-xl dark:text-white">
 Take Control of Your Finances<br/>💰💸<br/>
           With the best financial management platform<br/>

@@ -29,7 +29,8 @@ export const AddMemberModal = () => {
             const name = formData.get("name") as string; 
 
             addMember({name: name, totalInv: "0"}).then(()=>{
-                toast.success("Member added")
+                toast.success("Member added");
+                close();
             }).catch(()=>{
                 toast.error("something went wrong")
             })

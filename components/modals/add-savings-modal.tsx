@@ -28,7 +28,8 @@ export const AddSavingsModal = () => {
         startTransition(() => { 
             const amount = formData.get("amount") as string; 
             addSavings({amount, type: "cash", buy: false}).then(()=>{
-                toast.success("Savings added")
+                toast.success("Savings added");
+                close();
             }).catch(()=>{
                 toast.error("something went wrong")
             })

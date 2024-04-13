@@ -1,16 +1,17 @@
 import Link from "next/link"
 import { Button } from "./ui/button"
 import { auth, UserButton } from "@clerk/nextjs"
-import {Cabin} from "next/font/google"
-const font = Cabin({subsets:["latin"]})
+import {Cabin, Raleway} from "next/font/google"
+import { cn } from "@/lib/utils";
+const font = Raleway({subsets:["latin"]});
 
 export const Navbar = async () => {
 
     const {userId} = await auth();
 
     return(
-        <div className="fixed h-16 w-full italic border-b border-black flex items-center p-2 px-16 ">
-            <h1 className="text-white text-xl shadow-sm">
+        <div className="fixed h-16 w-full border-b border-black flex items-center p-2 px-16 ">
+            <h1 className={cn("text-xl", font.className)}>
                 <b>Wealth Wise</b>
             </h1>
 
