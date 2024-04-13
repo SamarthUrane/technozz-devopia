@@ -3,6 +3,7 @@
 import { db } from '@/lib/db';
 import { auth, currentUser } from '@clerk/nextjs';
 import { revalidatePath } from 'next/cache';
+import { addMember } from './add-members';
 
 type Props = {
     age: string;
@@ -32,6 +33,8 @@ export const setUserInfo = async ({
             totalSav: "0"
         }
     });
+
+    addMember({name: newUser.userName, totalInv: "0"});
 
     revalidatePath("/");
     revalidatePath("/dash-board");

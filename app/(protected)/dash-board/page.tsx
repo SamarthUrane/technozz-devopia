@@ -5,7 +5,6 @@ import { getUserInfo } from '@/actions/get-user-info';
 import { RegisterForm } from './register-form';
 import { getInvestments } from '@/db/queries';
 
-
 interface Member {
     name: string;
     email: string;
@@ -46,10 +45,6 @@ const Page: React.FC = async () => {
         "amount": "15500",
         "image": "https://imgs.search.brave.com/d0GBVnoCtuAMwVYfoNDnVt8BR41jyHxdQ2VG0tpFewg/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMudW5zcGxhc2gu/Y29tL3Bob3RvLTE1/NDQ3MjM3OTUtM2Zi/NjQ2OWY1YjM5P3E9/ODAmdz0xMDAwJmF1/dG89Zm9ybWF0JmZp/dD1jcm9wJml4bGli/PXJiLTQuMC4zJml4/aWQ9TTN3eE1qQTNm/REI4TUh4elpXRnlZ/Mmg4TVRWOGZIQnli/MlpwYkdVbE1qQndh/V04wZFhKbGZHVnVm/REI4ZkRCOGZId3c"
     }];
-
-    const handleSubmit = () => {
-
-    }
 
     return (
         <div className='h-full'>

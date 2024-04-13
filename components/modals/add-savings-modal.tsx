@@ -8,8 +8,6 @@ import { PiggyBank } from "lucide-react";
 import { Separator } from "../ui/separator";
 import { FormSubmit } from "../form/form-submit";
 import { toast } from "sonner";
-// import { setUserAlertEmail } from "@/actions/alert-email";
-// import { useEmailVerificationModal } from "@/store/use-verification-modal";
 
 export const AddSavingsModal = () => {
     const { isOpen, close } = useSetSavingsModal();
@@ -27,11 +25,8 @@ export const AddSavingsModal = () => {
         const formData = new FormData(event.target);
 
         startTransition(() => {
-
             const email = formData.get("email") as string;
             const location = formData.get("location") as string;
-
-
         });
 
     };
