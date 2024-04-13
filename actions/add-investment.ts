@@ -69,7 +69,7 @@ export const addInvestment = async ({
     })  
     const newamount=0 - parseInt(amount)
     const newvalue=newamount.toString() 
-    addSavings({amount:newvalue, type: type})
+    addSavings({amount:newvalue, type: type, buy: true})
     revalidatePath("/");
     revalidatePath("/dash-board");
 

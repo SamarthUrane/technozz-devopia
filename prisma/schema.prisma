@@ -42,9 +42,12 @@ model Family{
   totalInv String
 }
 
+
 model History{
   id String @default(uuid()) @id
   userId String
-  name String @unique
-  totalInv String
+  type String
+  buy Boolean
+  amount String
+  createdAt DateTime @default(now())
 }

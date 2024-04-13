@@ -7,7 +7,6 @@ import { UserRoundPlus } from "lucide-react";
 import { Separator } from "../ui/separator";
 import { FormSubmit } from "../form/form-submit";
 import { toast } from "sonner";
-import { addSavings } from "@/actions/set-savings";
 import { useSetMemberModal } from "@/store/use-member-modal";
 import { addMember } from "@/actions/add-members";
 

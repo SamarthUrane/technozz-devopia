@@ -7,10 +7,13 @@ import { revalidatePath } from 'next/cache';
 type Props = {
     amount : string; 
     type: string;
+    buy: boolean;
 }
 
 export const addSavings = async ({
-    amount
+    amount,
+    type,
+    buy
 }: Props) => {
   
     const {userId} =  auth();
@@ -42,6 +45,15 @@ export const addSavings = async ({
             totalSav:finalAmount.toString() 
         }
     });
+
+    const newHistory = await db.history.create({
+        data: {
+            userId,
+            amount,
+            buy,
+            type,
+        }
+    })
 
     revalidatePath("/");
     revalidatePath("/dash-board");
