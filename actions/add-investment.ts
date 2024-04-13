@@ -3,6 +3,7 @@
 import { db } from '@/lib/db';
 import { auth, currentUser } from '@clerk/nextjs';
 import { revalidatePath } from 'next/cache';
+import { addSavings } from './set-savings';
 
 type Props = {
     amount : string;
@@ -28,8 +29,7 @@ export const addInvestment = async ({
     const user = await currentUser();
 
     if(!userId || !user) return null;
-
-    console.log("user" + user);
+ 
 
     const newInvestment = await db.investment.create({
         data: {
@@ -42,7 +42,7 @@ export const addInvestment = async ({
             familyMemberName
         }
     });
-
+    
     
 
     const prevInv = await db.user.findUnique({
@@ -66,8 +66,10 @@ export const addInvestment = async ({
         data: {
             totalInv: totalInvAfterUpdate.toString(),
         }
-    })
-
+    })  
+    const newamount=0 - parseInt(amount)
+    const newvalue=newamount.toString() 
+    addSavings({amount:newvalue})
     revalidatePath("/");
     revalidatePath("/dash-board");
 
