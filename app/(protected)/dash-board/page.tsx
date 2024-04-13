@@ -1,4 +1,4 @@
-import React, { use } from 'react';
+import React from 'react';
 import DashBox from '../../../components/dash-box';
 import Members from '../../../components/member-box';
 import { getUserInfo } from '@/actions/get-user-info';

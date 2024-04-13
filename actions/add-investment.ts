@@ -22,7 +22,7 @@ export const addInvestment = async ({
     familyMemberName
 }: Props) => {
 
-    console.log("set user called");
+    console.log("add investment called");
 
     const {userId} = await auth();
     const user = await currentUser();
@@ -31,7 +31,7 @@ export const addInvestment = async ({
 
     console.log("user" + user);
 
-    const newUser = await db.investment.create({
+    const newInvestment = await db.investment.create({
         data: {
             userId,
             amount,
@@ -43,8 +43,33 @@ export const addInvestment = async ({
         }
     });
 
+    
+
+    const prevInv = await db.user.findUnique({
+        where: {
+            userId
+        },
+        select: {
+            totalInv: true
+        }
+    });
+
+    let totalInvAfterUpdate = 0;
+    if(prevInv){
+        totalInvAfterUpdate = parseInt(prevInv.totalInv) + parseInt(amount);
+    }
+
+    const updatedUserWithInv = await db.user.update({
+        where: {
+            userId
+        },
+        data: {
+            totalInv: totalInvAfterUpdate.toString(),
+        }
+    })
+
     revalidatePath("/");
     revalidatePath("/dash-board");
 
-    return {newUser};
+    return {newInvestment};
 }

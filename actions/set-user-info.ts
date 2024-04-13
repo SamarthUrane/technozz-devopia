@@ -14,15 +14,9 @@ export const setUserInfo = async ({
     gender
 }: Props) => {
 
-<<<<<<< HEA
-
     const {userId} = await auth();
     const user = await currentUser();
 
-=======
-    const {userId} = await auth();
-    const user= await currentUser();
->>>>>>> c4dc9e79bac5d59973d44c3f72a786ccef0252f5
     if(!userId || !user) return null;
 
     console.log("user" + user);
@@ -41,9 +35,5 @@ export const setUserInfo = async ({
 
     revalidatePath("/");
     revalidatePath("/dash-board");
-<<<<<<< HEAD
-
-=======
->>>>>>> c4dc9e79bac5d59973d44c3f72a786ccef0252f5
     return {newUser};
 }
