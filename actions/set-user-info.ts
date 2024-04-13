@@ -2,6 +2,7 @@
 
 import { db } from '@/lib/db';
 import { auth, currentUser } from '@clerk/nextjs';
+import { revalidatePath } from 'next/cache';
 
 type Props = {
     age: string;
@@ -13,8 +14,8 @@ export const setUserInfo = async ({
     gender
 }: Props) => {
 
-    const {userId, user} = await auth();
-
+    const {userId} = await auth();
+    const user= await currentUser();
     if(!userId || !user) return null;
 
     const newUser = await db.user.create({
@@ -29,5 +30,7 @@ export const setUserInfo = async ({
         }
     });
 
+    revalidatePath("/");
+    revalidatePath("/dash-board");
     return {newUser};
 }
