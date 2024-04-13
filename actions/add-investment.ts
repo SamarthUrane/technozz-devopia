@@ -63,10 +63,35 @@ export const addInvestment = async ({
             totalInv: totalInvAfterUpdate.toString(),
         }
     })  
+
     
     const newamount=0 - parseInt(amount)
     const newvalue=newamount.toString() 
-    addSavings({amount:newvalue, type: type, buy: true})
+
+    
+    addSavings({amount:newvalue, type: type, buy: true, name: familyMemberName});
+    //update the totalInvest in Family for member
+    const memberInvUpdate = await db.family.findUnique({
+        where: {
+            name:familyMemberName
+        },
+        select: {
+            totalInv: true
+        }
+    });
+    let memberInvafterupdate = 0;
+    if(memberInvUpdate){
+        memberInvafterupdate = parseInt(memberInvUpdate.totalInv) + parseInt(amount);
+    }
+
+    const newUser = await db.family.update({
+        where:{
+            name:familyMemberName
+        },
+        data: {
+            totalInv:memberInvafterupdate.toString() 
+        }
+    });
     revalidatePath("/");
     revalidatePath("/dash-board");
 

@@ -35,4 +35,22 @@ export const getHistory = cache(async () => {
     });
 
     return data;
+});
+
+export const getMembers = cache(async () => {
+    
+    const {userId} = await auth();
+
+    if(!userId) return null;
+
+    const data = await db.family.findMany({
+        where:{
+            userId
+        },
+        orderBy:{
+            totalInv:'desc'
+        }
+    });
+
+    return data;
 })

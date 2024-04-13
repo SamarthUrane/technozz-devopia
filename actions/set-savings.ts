@@ -8,12 +8,14 @@ type Props = {
     amount : string; 
     type: string;
     buy: boolean;
+    name?: string;
 }
 
 export const addSavings = async ({
     amount,
     type,
-    buy
+    buy,
+    name
 }: Props) => {
   
     const {userId} =  auth();
@@ -52,7 +54,7 @@ export const addSavings = async ({
             amount,
             buy,
             type,
-            familyMemberName: newUser.userName
+            familyMemberName: name ? name : newUser.userName
         }
     })
 
