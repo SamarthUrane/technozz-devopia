@@ -1,5 +1,7 @@
+'use client'
+import React from 'react';
+import { deleteInvestment } from '@/actions/delete-investment'; 
 import { Investment } from '@prisma/client';
-import React from 'react'; 
 
 interface Entry {
     id:string;
@@ -19,6 +21,13 @@ interface TableProps {
 
 // Table component
 const Table: React.FC<TableProps> = ({ investmentsData }) => {
+
+    const handleDelete = (e:any)=>{
+        e.preventDefault();
+        console.log("LLLLLL")
+        console.log(e.target.id)
+        deleteInvestment({id:e.target.id})
+    }
     return (
         <div> 
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg m-2">
@@ -55,7 +64,7 @@ const Table: React.FC<TableProps> = ({ investmentsData }) => {
                                 <td className="px-6 py-4">{entry.createdAt.toDateString()}</td>
                                 <td className="px-6 py-4">{entry.familyMemberName}</td>
                                 <td className="px-6 py-4 text-right">
-                                    <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Delete</a>
+                                    <button className="font-medium text-blue-600 dark:text-blue-500 hover:underline" id={entry.id} onClick={handleDelete}>Delete</button>
                                 </td>
                             </tr>
                         ))}
