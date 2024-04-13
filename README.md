@@ -38,8 +38,8 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
  
 
 git checkout -b {branchName}
-git pull {branchname}
+git pull {url}
 git add .
 git commit -m ""
 git push
-git push --set-upstream origin dummy ("ONLY IF ERROR IN GIT PUSH")
+git push --set-upstream origin {branchName} ("ONLY IF ERROR IN GIT PUSH")
