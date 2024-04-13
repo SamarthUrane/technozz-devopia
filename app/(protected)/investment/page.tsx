@@ -16,8 +16,6 @@ const Page = async () => {
       getInvestmentsData
   ]);
 
-  console.log(investmentsData);
-
 
   const getUserInfoData = getUserInfo();
 

@@ -19,8 +19,6 @@ export const addMember = async ({
 
     if(!userId || !user) return null;
 
-    console.log("user" + user);
-
     const newMember = await db.family.create({
         data: {
             userId,

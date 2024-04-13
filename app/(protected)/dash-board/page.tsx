@@ -25,8 +25,6 @@ const Page: React.FC = async () => {
         getInvestmentsData
     ]);
 
-    console.log(investmentsData);
-
     const members: Member[] = [{
         "name": "Samarth",
         "email": "samarthurane3201@gmail.com",

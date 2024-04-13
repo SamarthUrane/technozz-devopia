@@ -24,8 +24,6 @@ const Table: React.FC<TableProps> = ({ investmentsData }) => {
 
     const handleDelete = (e:any)=>{
         e.preventDefault();
-        console.log("LLLLLL")
-        console.log(e.target.id)
         deleteInvestment({id:e.target.id})
     }
     return (

@@ -18,3 +18,21 @@ export const getInvestments = cache(async () => {
 
     return data;
 });
+
+export const getHistory = cache(async () => {
+    
+    const {userId} = await auth();
+
+    if(!userId) return null;
+
+    const data = await db.history.findMany({
+        where:{
+            userId
+        },
+        orderBy:{
+            createdAt: 'desc'
+        }
+    });
+
+    return data;
+})

@@ -13,8 +13,6 @@ export const deleteInvestment = async ({
     id
 }: Props) => {
 
-    console.log("delete investment called");
-
     const {userId} = await auth();
     const user = await currentUser();
 

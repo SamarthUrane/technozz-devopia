@@ -21,8 +21,6 @@ export const setUserInfo = async ({
 
     if(!userId || !user) return null;
 
-    console.log("user" + user);
-
     const newUser = await db.user.create({
         data: {
             userId,

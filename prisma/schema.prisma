@@ -49,5 +49,6 @@ model History{
   type String
   buy Boolean
   amount String
+  familyMemberName String
   createdAt DateTime @default(now())
 }

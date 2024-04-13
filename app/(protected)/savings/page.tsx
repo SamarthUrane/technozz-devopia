@@ -1,7 +1,17 @@
 import Hitable from "@/components/ui/hitable";
+import { getHistory } from "@/db/queries";
 
 
-const SavingsPage = () => {
+const SavingsPage = async () => {
+    
+    const getHistoryData = getHistory();
+
+    const [
+        historyData
+    ] = await Promise.all([
+        getHistoryData
+    ])
+
     const dummyEntries = [
         {
             Type: "Stocks",
@@ -74,7 +84,7 @@ const SavingsPage = () => {
              Add Funds
            </button>
          </div>
-         <Hitable dummyEntries={dummyEntries}/>
+         <Hitable historyData={historyData}/>
        </div>
     );
 }

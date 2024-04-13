@@ -1,4 +1,5 @@
 import { cn } from '@/lib/utils';
+import { History } from '@prisma/client';
 import React from 'react'; 
 
 // Define the type for the dummyEntries data
@@ -13,11 +14,12 @@ interface Entry {
 
 // Define props interface for the Table component
 interface TableProps {
-    dummyEntries: Entry[];
+    historyData: History[] | null;
 }
 
 // Table component
-const Hitable: React.FC<TableProps> = ({ dummyEntries }) => {
+const Hitable: React.FC<TableProps> = ({ historyData }) => {
+    console.log(historyData);
     return (
         <div> 
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg m-2">
@@ -46,15 +48,15 @@ const Hitable: React.FC<TableProps> = ({ dummyEntries }) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {dummyEntries.map((entry, index) => (
-                            <tr key={index} className={index % 2 === 0 ? "bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600" : "bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600"}>
-                                <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{entry.Type}</td>
-                                <td className="px-6 py-4">{entry.Name}</td>
-                                <td className="px-6 py-4">{entry.Amount}</td>
-                                <td className="px-6 py-4">{entry.Date}</td>
-                                <td className="px-6 py-4">{entry.Member}</td>
+                        {historyData && historyData.map((item, i) => (
+                            <tr key={item.id} className={i % 2 === 0 ? "bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600" : "bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600"}>
+                                <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{item.type}</td>
+                                <td className="px-6 py-4">{item.type}</td>
+                                <td className="px-6 py-4">{item.amount}</td>
+                                <td className="px-6 py-4">{item.createdAt.toISOString()}</td>
+                                {/* <td className="px-6 py-4">{item.}</td> */}
                                 <td className="px-6 py-4 text-right">
-                                    <div className={cn(" hover:underline font-bold", entry.buy?"text-red-900":"text-green-900")}> {entry.buy?"- ":"+ "}{entry.Amount}</div>
+                                    <div className={cn(" hover:underline font-bold", item.buy?"text-red-900":"text-green-900")}> {item.amount}</div>
                                 </td>
                             </tr>
                         ))}

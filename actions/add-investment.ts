@@ -23,8 +23,6 @@ export const addInvestment = async ({
     familyMemberName
 }: Props) => {
 
-    console.log("add investment called");
-
     const {userId} = await auth();
     const user = await currentUser();
 
