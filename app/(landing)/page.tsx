@@ -1,10 +1,14 @@
-import { auth, UserButton } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 import {Cabin} from "next/font/google"
 
 import Image from "next/image";
 const font = Cabin({subsets:["latin"]})
 export default function Home() {
+  const {userId} = auth();
+  if(userId){
+    redirect("/dash-board");
+  }
   return (
      
 <div className="flex h-full w-full bg-blue-300 items-center justify-center gap-20 p-20">

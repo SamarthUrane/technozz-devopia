@@ -52,9 +52,9 @@ const Hitable: React.FC<TableProps> = ({ historyData }) => {
                             <tr key={item.id} className={i % 2 === 0 ? "bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600" : "bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600"}>
                                 <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{item.type}</td>
                                 <td className="px-6 py-4">{item.type}</td>
+                                <td className="px-6 py-4">{item.familyMemberName}</td>
                                 <td className="px-6 py-4">{item.amount}</td>
                                 <td className="px-6 py-4">{item.createdAt.toISOString()}</td>
-                                {/* <td className="px-6 py-4">{item.}</td> */}
                                 <td className="px-6 py-4 text-right">
                                     <div className={cn(" hover:underline font-bold", item.buy?"text-red-900":"text-green-900")}> {item.amount}</div>
                                 </td>

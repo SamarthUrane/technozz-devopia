@@ -52,6 +52,7 @@ export const addSavings = async ({
             amount,
             buy,
             type,
+            familyMemberName: newUser.userName
         }
     })
 
