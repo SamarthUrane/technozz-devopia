@@ -19,18 +19,14 @@ const Page = async () => {
   console.log(investmentsData);
 
 
-const Page = async () => {
-
   const getUserInfoData = getUserInfo();
 
   const [
     userInfo
   ] = await Promise.all([
     getUserInfoData
-  ]);
-
-  const totalInvestment = 350000;
-
+  ]); 
+ 
   return (
     <div> 
       <div className="mb-4 flex gap-x-5 justify-center mt-5">
@@ -45,4 +41,4 @@ const Page = async () => {
   );
 };
 
-export default Page;
+export default Page

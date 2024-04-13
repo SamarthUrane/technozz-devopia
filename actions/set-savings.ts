@@ -25,7 +25,7 @@ export const addSavings = async ({
         select: {
             totalSav:true 
         }
-    });
+    });     
     const finalAmount=parseInt(prevSavings.totalSav)+parseInt(amount);
 
     

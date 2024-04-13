@@ -8,6 +8,7 @@ import { PiggyBank } from "lucide-react";
 import { Separator } from "../ui/separator";
 import { FormSubmit } from "../form/form-submit";
 import { toast } from "sonner";
+import { addSavings } from "@/actions/set-savings";
 
 export const AddSavingsModal = () => {
     const { isOpen, close } = useSetSavingsModal();
@@ -24,9 +25,13 @@ export const AddSavingsModal = () => {
 
         const formData = new FormData(event.target);
 
-        startTransition(() => {
-            const email = formData.get("email") as string;
-            const location = formData.get("location") as string;
+        startTransition(() => { 
+            const amount = formData.get("amount") as string; 
+            addSavings({amount}).then(()=>{
+                toast.success("Savings added")
+            }).catch(()=>{
+                toast.error("something went wrong")
+            })
         });
 
     };

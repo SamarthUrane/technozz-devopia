@@ -68,7 +68,7 @@ export const addInvestment = async ({
         }
     })  
     const newamount=0 - parseInt(amount)
-    const newvalue=newamount.toString()
+    const newvalue=newamount.toString() 
     addSavings({amount:newvalue})
     revalidatePath("/");
     revalidatePath("/dash-board");
