@@ -14,6 +14,7 @@ export const setUserInfo = async ({
     gender
 }: Props) => {
 
+
     const {userId} = await auth();
     const user = await currentUser();
 

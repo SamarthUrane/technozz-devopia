@@ -8,6 +8,7 @@ import { PiggyBank } from "lucide-react";
 import { Separator } from "../ui/separator";
 import { FormSubmit } from "../form/form-submit";
 import { toast } from "sonner";
+import { addSavings } from "@/actions/set-savings";
 // import { setUserAlertEmail } from "@/actions/alert-email";
 // import { useEmailVerificationModal } from "@/store/use-verification-modal";
 
@@ -28,9 +29,13 @@ export const AddSavingsModal = () => {
 
         startTransition(() => {
 
-            const email = formData.get("email") as string;
-            const location = formData.get("location") as string;
-
+            const amount = formData.get("amount") as string;
+            addSavings({amount})
+            .then(() => {
+                toast.success("Amount added successfully!");
+                
+            })
+            .catch(() => toast.error("Something went wront"));
 
         });
 
@@ -56,11 +61,7 @@ export const AddSavingsModal = () => {
                                 id="amount"
                                 type="number"
                             />
-                            <FormInput
-                                label="Name"
-                                id="name"
-                                type="text"
-                            />
+                             
                             <Separator />
                             <FormSubmit
                                 isProcessing={pending}
